@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit: <%= show.name %></h1>
+    <form action="/shows/<%=show._id%>?_method=PUT" method="POST">
+        <input type="text" name="name" value="<%= show.name %>" /><br />
+        <input type="text" name="currentEpisode" value="<%= show.currentEpisode %>" /><br />
+        <input type="checkbox" name="complete" <% if(show.complete === true){ %> checked <% } %> /><br />
+        <input type="submit" value="Edit Show" />
+    </form>
+</body>
+</html>

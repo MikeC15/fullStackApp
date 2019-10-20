@@ -11,19 +11,45 @@ router.get("/new", (req, res)=>{
 
 //post route
 router.post("/", (req, res)=>{
-    console.log(req.body)
     if (req.body.complete === 'on') {
-        // we do this to make it look like the
-        // data in our model "sanitizing our data"
         req.body.complete = true;
     } else {
         req.body.complete = false;
     }
     Show.create(req.body, (err, createdShow)=>{
         if(err){
-            console.log(err)
+            res.send(err)
         } else{
             console.log(`I Created ${createdShow}`)
+            res.redirect("/shows")
+        }
+    })
+})
+
+//edit route
+router.get("/:id/edit", (req, res)=>{
+    Show.findById(req.params.id, (err, foundShow)=>{
+        if(err){
+            res.send(err)
+        }else{
+            res.render("edit.ejs", {
+                show: foundShow
+            })
+        }
+    })
+})
+
+//update route
+router.put("/:id", (req,res)=>{
+    if (req.body.complete === 'on') {
+        req.body.complete = true;
+    } else {
+        req.body.complete = false;
+    }
+    Show.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedShow)=>{
+        if(err){
+            res.send(err)
+        }else{
             res.redirect("/shows")
         }
     })
@@ -33,7 +59,7 @@ router.post("/", (req, res)=>{
 router.get("/:id", (req, res)=>{
     Show.findById(req.params.id, (err, foundShow)=>{
         if(err){
-            console.log(err)
+            res.send(err)
         }else{
             res.render("show.ejs", {
                 show: foundShow
@@ -46,7 +72,7 @@ router.get("/:id", (req, res)=>{
 router.get("/", (req, res)=>{
     Show.find({}, (err, foundShows)=>{
         if(err){
-            console.log(err)
+            res.send(err)
         }else{
             res.render("index.ejs", {
                 shows: foundShows
@@ -59,7 +85,7 @@ router.get("/", (req, res)=>{
 router.delete("/:id", (req, res)=>{
     Show.findByIdAndDelete(req.params.id, (err)=>{
         if(err){
-            console.log(err)
+            res.send(err)
         } else{
             res.redirect("/shows")
         }
