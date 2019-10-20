@@ -9,9 +9,9 @@
 <body>
     <h1>All Netflix Shows</h1>
     <ul>
-        <% for(let i = 0; i < shows.lenth; i++){ %>
+        <% for(let i = 0; i < shows.length; i++){ %>
             <li>
-                <a href=""><%= shows[i].name %></a>
+                <a href="/shows/<%=shows[i]._id%>"><%= shows[i].name %></a>
             </li>
         <%}%>
     </ul>
