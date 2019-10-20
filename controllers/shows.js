@@ -29,6 +29,19 @@ router.post("/", (req, res)=>{
     })
 })
 
+//show route
+router.get("/:id", (req, res)=>{
+    Show.findById(req.params.id, (err, foundShow)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.render("show.ejs", {
+                show: foundShow
+            })
+        }
+    })
+})
+
 //index route
 router.get("/", (req, res)=>{
     Show.find({}, (err, foundShows)=>{
