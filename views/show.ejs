@@ -8,13 +8,21 @@
 </head>
 <body>
     <h1><%= show.name %></h1>
+
+    Currently Watching: <%= show.currentEpisode %><br /><br />
     
-    <a href="/shows/<%=show._id%>/edit">Edit</a><br />
+    <!-- <a href="/shows/<%=show._id%>/edit">Edit</a><br />  Both of these work -->
+    <form action="/shows/<%=show._id%>/edit">
+        <button type="submit">Edit</button>
+    </form>
 
     <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
         <button type="submit">Delete Show</button>
     </form>
 
-    <a href="/shows">Back Home</a>
+    <!-- <a href="/shows">Back Home</a> -->
+    <form action="/shows">
+        <button type="submit">Back Home</button>
+    </form>
 </body>
 </html>
