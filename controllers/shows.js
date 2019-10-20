@@ -55,4 +55,15 @@ router.get("/", (req, res)=>{
     })
 })
 
+//destroy route
+router.delete("/:id", (req, res)=>{
+    Show.findByIdAndDelete(req.params.id, (err)=>{
+        if(err){
+            console.log(err)
+        } else{
+            res.redirect("/shows")
+        }
+    })
+})
+
 module.exports = router;

@@ -11,6 +11,10 @@
     
     <a href="/shows/<%=show._id%>/edit">Edit</a><br />
 
+    <form action="/shows/<%= show._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete Show</button>
+    </form>
+
     <a href="/shows">Back Home</a>
 </body>
 </html>
