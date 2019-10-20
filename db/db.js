@@ -8,7 +8,7 @@ mongoose.connect(connectionString, {
     useFindAndModify: false
 });
 
-mongoose.connection.on("error", ()=>{
+mongoose.connection.on("connected", ()=>{
     console.log(`mongoose is listening to ${connectionString}`)
 })
 mongoose.connection.on('disconnected', () => {
