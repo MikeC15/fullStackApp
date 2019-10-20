@@ -1,4 +1,4 @@
-//Netflix Tracker
+//Netflix Tracker server main connection page
 
 const express = require("express");
 const app = express();
@@ -10,9 +10,6 @@ require("./db/db")
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 app.use("/shows", showsController)
-
-
-
 
 app.listen(3000, ()=>{
     console.log("We are listening.")
