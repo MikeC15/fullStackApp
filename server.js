@@ -7,6 +7,8 @@ const bodyParser = require("body-parser");
 const showsController = require("./controllers/shows");
 require("./db/db")
 
+app.use(express.static('./public'));
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 app.use("/shows", showsController)
